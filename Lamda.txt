@@ -1,0 +1,27 @@
+import boto3
+region = 'us-east-1'
+instances = ['i-0237b400d7c8dbb4b']
+ec2 = boto3.client('ec2', region_name=region)
+ec2_resource = boto3.resource('ec2', region_name=region)
+inst = 'i-0237b400d7c8dbb4b'
+
+
+def lambda_handler(event, context):
+    instance = ec2_resource.Instance(inst)
+    if instance.state['Name'] == 'running':
+        print('Matillion EC2 Instance is already running')
+    else:    
+        print('Starting the Matillion EC2 instance')
+        ec2.start_instances(InstanceIds=instances)
+#    instance = ec2_resource.Instance(inst2)    
+#    if instance.state['Name'] == 'running':
+#        print('Matillion EC2 Instance is already running')
+#    else:    
+#        print('Starting the Matillion EC2 instance')
+#        ec2.start_instances(InstanceIds=instances)
+#    instance = ec2_resource.Instance(inst3)    
+#    if instance.state['Name'] == 'running':
+#        print('Matillion EC2 Instance is already running')
+#    else:    
+#        print('Starting the Matillion EC2 instance')
+#        ec2.start_instances(InstanceIds=instances)

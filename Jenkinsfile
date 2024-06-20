@@ -16,10 +16,10 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                // Checkout code from repository
-                // Use withCredentials as needed
-                script {
-                    checkout scm
+                script {                 
+                    withCredentials([string(credentialsId: 'github-pat', variable: 'GITHUB_PAT')]) {
+                        sh "git clone https://$GITHUB_PAT@github.com/arunawsdevops/EKS-Cluster-terraform.git"                   
+                    }
                 }
             }
         }

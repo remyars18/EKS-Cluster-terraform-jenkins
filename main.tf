@@ -4,8 +4,8 @@ resource "aws_eks_cluster" "k8-cluster" {
   version  = "1.28"
 
   vpc_config {
-    subnet_ids         = ["subnet-0c542ada8b39ab9cc", "subnet-0b686a2f50c5f6be2"]
-    security_group_ids = ["sg-06caed9cd6d6f3e7c"]
+    subnet_ids         = ["subnet-02c0b12e8618deb13", "subnet-030450037e10aaf44"]
+    security_group_ids = ["sg-0d881e3b78f8ca1fc"]
   }
 }
 
@@ -13,7 +13,7 @@ resource "aws_eks_node_group" "k8-cluster-node-group" {
   cluster_name    = aws_eks_cluster.k8-cluster.name
   node_group_name = "k8-cluster-node-group"
   node_role_arn   = "arn:aws:iam::670004487191:instance-profile/node-role"
-  subnet_ids      = ["subnet-0c542ada8b39ab9cc", "subnet-0b686a2f50c5f6be2"]
+  subnet_ids      = ["subnet-02c0b12e8618deb13", "subnet-030450037e10aaf44"]
 
   scaling_config {
     desired_size = 3

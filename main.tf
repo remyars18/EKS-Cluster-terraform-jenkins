@@ -1,7 +1,7 @@
 resource "aws_eks_cluster" "k8-cluster" {
   name     = "k8-cluster"
   role_arn = "arn:aws:iam::670004487191:role/eks-cluster-role"
-  version  = "1.28"
+  version  = "1.30"
 
   vpc_config {
     subnet_ids         = ["subnet-02c0b12e8618deb13", "subnet-030450037e10aaf44"]
@@ -12,7 +12,7 @@ resource "aws_eks_cluster" "k8-cluster" {
 resource "aws_eks_node_group" "k8-cluster-node-group" {
   cluster_name    = aws_eks_cluster.k8-cluster.name
   node_group_name = "k8-cluster-node-group"
-  node_role_arn   = "arn:aws:iam::670004487191:instance-profile/node-role"
+  node_role_arn   = "arn:aws:iam::670004487191:role/node-role"
   subnet_ids      = ["subnet-02c0b12e8618deb13", "subnet-030450037e10aaf44"]
 
   scaling_config {
